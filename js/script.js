@@ -1,5 +1,5 @@
 // Écouter l'événement personnalisé 'wheelEnd'
-window.addEventListener('wheelEnd', function(event) {
+window.addEventListener('wheelEnd', function (event) {
     const { label, message } = event.detail;
     showResultPopup(label, message);
 });
@@ -11,7 +11,20 @@ function showResultPopup(label, message) {
     messageElem.textContent = message;
     popup.setAttribute('data-label', label);
     popup.style.display = 'block';
+
+    // Désactiver le click sur la roue
+    document.querySelector('.chartholder').style.pointerEvents = 'none';
 }
+
+// Fonction pour fermer la popup et réactiver le click sur la roue
+document.getElementById('close-popup').addEventListener('click', function () {
+    const popup = document.getElementById('result-popup');
+    popup.style.display = 'none';
+
+    // Réactiver le click sur la roue
+    document.querySelector('.chartholder').style.pointerEvents = 'auto';
+});
+
 
 document.getElementById('download-button').addEventListener('click', function() {
     const couponLabel = document.getElementById('result-popup').getAttribute('data-label');

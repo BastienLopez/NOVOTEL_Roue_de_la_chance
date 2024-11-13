@@ -17,6 +17,9 @@
     <!-- Conteneur principal -->
     <main>
         <h3>Tentez votre chance ! </h3>
+        <br>
+        <p style="color: white;">Vous ne pouvez lancer la roue qu'une fois.</p>
+        <p style="color: white;">Pensez bien a télécharger le coupon 😉</p>
         <!-- Roue de la chance -->
         <div id="chart"></div>
         <div id="question"><p></p></div>
@@ -24,9 +27,12 @@
 
     <!-- Popup pour afficher le résultat après le spin -->
     <div id="result-popup" class="hidden">
+        <span id="close-popup" class="close-btn">&times;</span>
         <p id="result-message"></p>
         <button id="download-button">Télécharger le coupon</button>
     </div>
+    
+    
 
     <!-- Chargement des scripts -->
     <script src="https://d3js.org/d3.v3.min.js"></script>
