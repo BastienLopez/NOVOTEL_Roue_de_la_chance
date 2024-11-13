@@ -14,7 +14,6 @@ function showResultPopup(label, message) {
         popup.setAttribute('data-label', label);
         popup.style.display = 'block';
 
-        // Désactiver le click sur la roue pour éviter de relancer le spin
         const chartholder = document.querySelector('.chartholder');
         if (chartholder) {
             chartholder.style.pointerEvents = 'none';
@@ -24,7 +23,6 @@ function showResultPopup(label, message) {
 
 // Initialisation des écouteurs d'événements lorsque le DOM est chargé
 function initializeEventListeners() {
-    // Fonction pour fermer la popup et réactiver le click sur la roue
     const closePopupBtn = document.getElementById('close-popup');
     if (closePopupBtn) {
         closePopupBtn.addEventListener('click', function () {
@@ -40,7 +38,6 @@ function initializeEventListeners() {
         });
     }
 
-    // Fonction pour télécharger le coupon
     const downloadButton = document.getElementById('download-button');
     if (downloadButton) {
         downloadButton.addEventListener('click', function () {
@@ -73,7 +70,6 @@ function initializeEventListeners() {
         });
     }
 
-    // Gestion de la sélection d'emoji
     const emojis = document.querySelectorAll('.emoji');
     const emojiRatingInput = document.getElementById('emoji-rating');
 
@@ -87,21 +83,54 @@ function initializeEventListeners() {
         });
     }
 
-    // Validation du formulaire lors de l'envoi
     const feedbackForm = document.getElementById('feedback-form');
+    const confirmationContainer = document.getElementById('confirmation-message');
+
     if (feedbackForm) {
         feedbackForm.addEventListener('submit', function (event) {
-            const emojiRating = document.getElementById('emoji-rating')?.value;
-            const feedback = document.getElementById('feedback')?.value;
+            event.preventDefault();
 
-            if (!emojiRating || !feedback.trim()) {
-                event.preventDefault();
-                alert("Veuillez sélectionner un emoji et donner votre avis.");
+            const emojiRating = emojiRatingInput?.value;
+            const feedback = document.getElementById('feedback')?.value;
+            const email = document.getElementById('email')?.value;
+
+            // Vérifier que tous les champs sont remplis
+            if (!emojiRating || !feedback.trim() || !email.trim()) {
+                alert("Veuillez sélectionner un emoji, entrer votre email et donner votre avis.");
                 return;
             }
 
-            document.getElementById('form-container').style.display = 'none';
-            spin(); // Démarrer la roue (assurez-vous que cette fonction est définie dans 'roue.js')
+            // Vérifier que l'avis contient au moins 50 caractères
+            if (feedback.length < 50) {
+                alert("Votre avis doit contenir au moins 50 caractères.");
+                return;
+            }
+
+            // Construire le lien mailto pour envoyer l'email
+            const subject = encodeURIComponent("Avis client - NOVOTEL Reims Tinqueux");
+            const body = encodeURIComponent(
+                `Emoji sélectionné : ${emojiRating}\nEmail : ${email}\nAvis : ${feedback}`
+            );
+            const mailtoLink = `mailto:citame7356@operades.com?subject=${subject}&body=${body}`;
+
+            // Ouvrir le lien mailto pour envoyer l'email
+            window.location.href = mailtoLink;
+
+            // Afficher le message de confirmation avec les détails du mail
+            if (confirmationContainer) {
+                confirmationContainer.innerHTML = `
+                    <h3>Merci ! Votre avis a bien été envoyé.</h3>
+                    <p><strong>Email :</strong> ${email}</p>
+                    <p><strong>Emoji sélectionné :</strong> ${emojiRating}</p>
+                    <p><strong>Avis :</strong> ${feedback}</p>
+                `;
+                confirmationContainer.style.display = 'block';
+            }
+
+            // Rediriger vers la page de la roue après un délai
+            setTimeout(() => {
+                window.location.href = 'roue.html';
+            }, 100);
         });
     }
 }
