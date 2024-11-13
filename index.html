@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de participation - NOVOTEL Reims Tinqueux</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+
+    <!-- Header avec logo -->
+    <header>
+        <img src="style/img/logo.svg" alt="Logo Novotel" class="logo">
+    </header>
+
+    <!-- Contenu principal -->
+    <main>
+        <h3>Donnez votre avis et tentez votre chance de gagner des avantages avec votre Novotel !</h3>
+        <p>Partagez votre avis et recevez une chance exclusive d'obtenir des réductions et des offres spéciales.</p>
+        <p>Un simple clic pour accéder à des avantages qui rendront votre séjour encore plus agréable.</p>
+        
+        <!-- Formulaire de participation -->
+        <div id="form-container">
+            <form id="feedback-form" action="roue.html" method="POST">
+                <input type="email" id="email" name="email" placeholder="Votre email" required>
+                <textarea id="feedback" name="feedback" placeholder="Donnez votre avis" required></textarea>
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

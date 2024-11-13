@@ -1,0 +1,75 @@
+/* Font importée */
+body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background-color: #fff;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo centré dans le header */
+header .logo {
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Contenu principal */
+main {
+    background-color: #1E22AA;
+    color: #fff;
+    padding: 30px;
+    text-align: center;
+    margin-top: 100px; /* Espace pour le header */
+}
+
+/* Styles pour le formulaire */
+#form-container {
+    margin-top: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input, textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    max-width: 300px;
+    border: none;
+    border-radius: 5px;
+}
+
+textarea {
+    height: 250px;
+    resize: vertical;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #fff;
+    color: #1E22AA;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #d9e1ff;
+}

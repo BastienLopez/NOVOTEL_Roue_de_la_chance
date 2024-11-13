@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de la Roue - NOVOTEL Reims Tinqueux</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/roue.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <img src="style/img/logo.svg" alt="Logo Novotel" class="logo">
+    </header>
+
+    <!-- Conteneur principal -->
+    <main>
+        <h3>Tentez votre chance ! </h3>
+        <!-- Roue de la chance -->
+        <div id="chart"></div>
+        <div id="question"><p></p></div>
+    </main>
+
+    <!-- Popup pour afficher le résultat après le spin -->
+    <div id="result-popup" class="hidden">
+        <p id="result-message"></p>
+        <button id="download-button">Télécharger le coupon</button>
+    </div>
+
+    <!-- Chargement des scripts -->
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="js/roue.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
