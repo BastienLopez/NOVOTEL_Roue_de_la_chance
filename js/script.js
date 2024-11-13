@@ -100,9 +100,9 @@ function initializeEventListeners() {
                 return;
             }
 
-            // Vérifier que l'avis contient au moins 50 caractères
-            if (feedback.length < 50) {
-                alert("Votre avis doit contenir au moins 50 caractères.");
+            // Vérifier que l'avis contient au moins 25 caractères
+            if (feedback.length < 25 ) {
+                alert("Votre avis doit contenir au moins 25 caractères.");
                 return;
             }
 
