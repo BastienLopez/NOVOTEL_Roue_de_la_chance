@@ -12,7 +12,7 @@ function showResultPopup(label, message) {
     popup.setAttribute('data-label', label);
     popup.style.display = 'block';
 
-    // Désactiver le click sur la roue
+    // Désactiver le click sur la roue pour éviter de relancer le spin
     document.querySelector('.chartholder').style.pointerEvents = 'none';
 }
 
@@ -25,7 +25,7 @@ document.getElementById('close-popup').addEventListener('click', function () {
     document.querySelector('.chartholder').style.pointerEvents = 'auto';
 });
 
-
+// Fonction pour télécharger le coupon
 document.getElementById('download-button').addEventListener('click', function() {
     const couponLabel = document.getElementById('result-popup').getAttribute('data-label');
     if (!couponLabel) {
@@ -46,10 +46,46 @@ document.getElementById('download-button').addEventListener('click', function() 
     ctx.font = '20px Arial';
     ctx.fillStyle = '#000000';
     ctx.fillText(couponLabel, canvas.width / 2, 120);
+    
+    // Créer le lien de téléchargement
     const link = document.createElement('a');
     link.href = canvas.toDataURL('image/png');
     link.download = 'coupon_novotel.png';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+});
+
+// Gestion de la sélection d'emoji
+const emojis = document.querySelectorAll('.emoji');
+const emojiRatingInput = document.getElementById('emoji-rating');
+
+emojis.forEach(emoji => {
+    emoji.addEventListener('click', function() {
+        // Retirer la classe 'selected' des autres emojis
+        emojis.forEach(e => e.classList.remove('selected'));
+
+        // Ajouter la classe 'selected' à l'emoji cliqué
+        this.classList.add('selected');
+
+        // Enregistrer la valeur de l'emoji sélectionné dans le champ caché
+        emojiRatingInput.value = this.getAttribute('data-value');
+    });
+});
+
+// Validation du formulaire lors de l'envoi
+document.getElementById('feedback-form').addEventListener('submit', function(event) {
+    const emojiRating = document.getElementById('emoji-rating').value;
+    const feedback = document.getElementById('feedback').value;
+
+    // Vérifier que l'utilisateur a sélectionné un emoji et donné un avis
+    if (!emojiRating || !feedback.trim()) {
+        event.preventDefault();
+        alert("Veuillez sélectionner un emoji et donner votre avis.");
+        return;
+    }
+
+    // Cache le formulaire et démarre la roue
+    document.getElementById('form-container').style.display = 'none';
+    spin(); // Démarrer la roue (assurez-vous que cette fonction est définie dans 'roue.js')
 });

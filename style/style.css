@@ -1,75 +1,145 @@
-/* Font importée */
+/* Style général */
 body {
     font-family: 'Montserrat', Arial, sans-serif;
     margin: 0;
     padding: 0;
+    text-align: center;
+    background-color: #F3F4F6;
+    overflow-x: hidden; /* Empêche le défilement horizontal */
 }
 
-/* Header */
+/* Header avec logo */
 header {
     background-color: #fff;
-    text-align: center;
     padding: 20px;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
-/* Logo centré dans le header */
 header .logo {
-    max-width: 200px;
+    max-width: 180px;
     height: auto;
-    display: block;
-    margin: 0 auto;
 }
 
-/* Contenu principal */
-main {
-    background-color: #1E22AA;
-    color: #fff;
-    padding: 30px;
-    text-align: center;
-    margin-top: 100px; /* Espace pour le header */
+/* Section d'introduction */
+#intro-section {
+    margin: 20px auto;
+    max-width: 90%;
+    color: #1E22AA;
 }
 
-/* Styles pour le formulaire */
-#form-container {
-    margin-top: 20px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-input, textarea {
+#intro-section h3 {
+    font-size: 5vw; /* Taille responsive */
     margin-bottom: 10px;
-    padding: 10px;
+}
+
+#intro-section p {
+    font-size: 4vw; /* Taille responsive */
+    margin-bottom: 10px;
+}
+
+/* Formulaire */
+#form-container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+#form-container p {
+    font-size: 4vw; /* Taille responsive */
+    margin-bottom: 20px;
+}
+
+#emoji-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.emoji {
+    font-size: 7vw;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    position: relative;
+    display: inline-flex; /* Utilisation de inline-flex pour un meilleur rendu */
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.emoji.selected::after {
+    content: "●";
+    font-size: 2vw;
+    color: #1E22AA;
+    position: absolute;
+    bottom: -15px; /* Ajusté pour être visible */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.emoji.selected {
+    transform: scale(1.2);
+    border: 2px solid #1E22AA;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+
+.emoji:hover {
+    transform: scale(1.1);
+}
+
+input[type="email"], textarea {
     width: 100%;
-    max-width: 300px;
-    border: none;
+    box-sizing: border-box; /* S'assure que le padding n'affecte pas la largeur */
+    padding: 12px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 3.5vw;
 }
 
 textarea {
-    height: 250px;
+    height: 120px;
     resize: vertical;
 }
 
 button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #fff;
-    color: #1E22AA;
+    background-color: #1E22AA;
+    color: #fff;
+    padding: 12px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 4vw;
+    margin-top: 15px;
 }
 
 button:hover {
-    background-color: #d9e1ff;
+    background-color: #14238A;
+}
+
+/* Media Queries pour petits écrans */
+@media (max-width: 768px) {
+    #intro-section h3 {
+        font-size: 6vw;
+    }
+
+    #intro-section p {
+        font-size: 4.5vw;
+    }
+
+    #form-container {
+        padding: 15px;
+    }
+
+    button {
+        font-size: 4.5vw;
+    }
 }

@@ -6,6 +6,7 @@
     <title>Formulaire de participation - NOVOTEL Reims Tinqueux</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css">
+    <script src="js/script.js"></script>
 </head>
 <body>
 
@@ -14,15 +15,30 @@
         <img src="style/img/logo.svg" alt="Logo Novotel" class="logo">
     </header>
 
-    <!-- Contenu principal -->
-    <main>
+    <!-- Introduction -->
+    <section id="intro-section">
         <h3>Donnez votre avis et tentez votre chance de gagner des avantages avec votre Novotel !</h3>
         <p>Partagez votre avis et recevez une chance exclusive d'obtenir des réductions et des offres spéciales.</p>
         <p>Un simple clic pour accéder à des avantages qui rendront votre séjour encore plus agréable.</p>
-        
-        <!-- Formulaire de participation -->
+    </section>
+
+    <!-- Contenu principal -->
+    <main>
         <div id="form-container">
+            <p>Votre opinion sur le service obtenu dans l'établissement :</p>
+            
+            <!-- Échelle d'emoji -->
+            <div id="emoji-container">
+                <span class="emoji" data-value="1">&#128577;</span> <!-- Très mécontent -->
+                <span class="emoji" data-value="2">&#128542;</span> <!-- Mécontent -->
+                <span class="emoji" data-value="3">&#128528;</span> <!-- Neutre -->
+                <span class="emoji" data-value="4">&#128578;</span> <!-- Content -->
+                <span class="emoji" data-value="5">&#128513;</span> <!-- Très content -->
+            </div>
+
+            <!-- Formulaire d'avis -->
             <form id="feedback-form" action="roue.html" method="POST">
+                <input type="hidden" id="emoji-rating" name="emoji-rating" required>
                 <input type="email" id="email" name="email" placeholder="Votre email" required>
                 <textarea id="feedback" name="feedback" placeholder="Donnez votre avis" required></textarea>
                 <button type="submit">Envoyer</button>
