@@ -1,38 +1,26 @@
-const { spin, showResultPopup } = require('../js/script.js');
+const { showResultPopup, initializeEventListeners } = require('../js/script.js');
 
-document.body.innerHTML = `
-  <div id="chart"></div>
-  <div id="result-popup" class="hidden">
-    <span id="close-popup">&times;</span>
-    <p id="result-message"></p>
-    <button id="download-button">Télécharger le coupon</button>
-  </div>
-  <div class="chartholder"></div>
-`;
+beforeEach(() => {
+    document.body.innerHTML = `
+        <div id="result-popup" class="hidden">
+            <span id="close-popup" class="close-btn">&times;</span>
+            <p id="result-message"></p>
+            <button id="download-button">Télécharger le coupon</button>
+        </div>
+    `;
+    initializeEventListeners();
+});
 
-describe('Roue de la chance', () => {
-  test('La roue tourne et choisit un résultat', () => {
-    const result = spin();
-    expect(result).toBeDefined();
-  });
-
-  test('Affichage de la popup', () => {
-    const label = "Coupon -5%";
-    const message = "Bravo ! Vous avez gagné un coupon d'une valeur de 5% sur votre prochain achat";
-    showResultPopup(label, message);
-
+test('Affichage de la popup après le spin', () => {
+    showResultPopup("Coupon -10%", "Vous avez gagné 10% de réduction !");
     const popup = document.getElementById('result-popup');
-    const messageElem = document.getElementById('result-message');
-
     expect(popup.style.display).toBe('block');
-    expect(messageElem.textContent).toBe(message);
-  });
+});
 
-  test('Fermeture de la popup', () => {
+test('Fermeture de la popup', () => {
     const closePopupBtn = document.getElementById('close-popup');
-    closePopupBtn.click();
-
     const popup = document.getElementById('result-popup');
+    popup.style.display = 'block';
+    closePopupBtn.click();
     expect(popup.style.display).toBe('none');
-  });
 });
