@@ -8,6 +8,7 @@ var rotation = 0,
     oldpick = [],
     color = d3.scale.category20();
 
+// Déclaration des données pour la roue
 var data = [
     { "label": "Coupon -5%", "value": 1, "question": "Bravo ! Vous avez gagné un coupon d'une valeur de 5% sur votre prochain achat" },
     { "label": "Un voyage à Cuba", "value": 2, "question": "Ouai bravo. C'est top !" },
@@ -17,6 +18,7 @@ var data = [
     { "label": "Perdu", "value": 6, "question": "Vous avez perdu 😫" }
 ];
 
+// Initialiser le SVG
 var svg = d3.select('#chart')
     .append("svg")
     .data([data])
@@ -32,8 +34,9 @@ var vis = container.append("g");
 var pie = d3.layout.pie().sort(null).value(function (d) { return 1; });
 var arc = d3.svg.arc().outerRadius(r);
 
+// Ajouter les segments de la roue
 var arcs = vis.selectAll("g.slice")
-    .data(pie)
+    .data(pie(data))
     .enter()
     .append("g")
     .attr("class", "slice");
@@ -42,16 +45,31 @@ arcs.append("path")
     .attr("fill", function (d, i) { return color(i); })
     .attr("d", arc);
 
-arcs.append("text").attr("transform", function (d) {
-    d.innerRadius = 0;
-    d.outerRadius = r;
-    d.angle = (d.startAngle + d.endAngle) / 2;
-    return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")translate(" + (d.outerRadius - 10) + ")";
-})
-    .attr("text-anchor", "end")
-    .text(function (d, i) {
-        return data[i].label;
-    });
+// Ajouter du texte ou une image SVG pour chaque segment
+arcs.each(function (d, i) {
+    if (data[i].label === "Cocktail offert !") {
+        // Afficher le SVG pour "Cocktail offert !"
+        d3.select(this)
+            .append("svg:image")
+            .attr("xlink:href", "src/img/cocktail.svg")
+            .attr("width", 100)
+            .attr("height", 100)
+            .attr("x", -180)
+            .attr("y", -45);
+    } else {
+        // Ajouter le texte pour les autres segments
+        d3.select(this)
+            .append("text")
+            .attr("transform", function (d) {
+                d.innerRadius = 0;
+                d.outerRadius = r;
+                d.angle = (d.startAngle + d.endAngle) / 2;
+                return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")translate(" + (d.outerRadius - 80) + ")";
+            })
+            .attr("text-anchor", "middle")
+            .text(data[i].label);
+    }
+});
 
 function spin() {
     container.on("click", null);
@@ -89,7 +107,7 @@ function rotTween(to) {
     };
 }
 
-// Ajouter la flèche à droite de la roue, pointant vers la gauche
+// Ajouter la flèche à droite de la roue
 svg.append("g")
     .attr("class", "pointer")
     .attr("transform", "translate(" + (w / 2 + r + 10) + "," + (h / 2) + ")")
@@ -97,6 +115,7 @@ svg.append("g")
     .attr("points", "0,-10 -28,0 0,10")
     .style({ "fill": "red" });
 
+// Ajouter le bouton pour lancer la roue
 container.append("circle")
     .attr("cx", 0)
     .attr("cy", 0)
