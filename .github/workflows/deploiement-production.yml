@@ -1,0 +1,38 @@
+name: Déploiement Production
+
+on:
+  push:
+    tags:
+      - "*-production" # Déclenchement uniquement pour les tags se terminant par '-production'
+
+jobs:
+  deploy:
+    name: Déploiement en Production
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v2
+
+      - name: Configuration des variables d'environnement
+        env:
+          NODE_ENV: production
+
+      # Étape de construction du projet (si nécessaire, par exemple pour une application React)
+      - name: Installer les dépendances
+        run: npm install
+
+      - name: Construire le projet
+        run: npm run build
+
+      # Étape de déploiement (exemple utilisant un serveur avec SCP, modifiez en fonction de votre méthode)
+      - name: Déployer sur le serveur de production
+        env:
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_PATH: ${{ secrets.SERVER_PATH }}
+        run: |
+          scp -r ./build/* $SERVER_USER@$SERVER_HOST:$SERVER_PATH
+
+      - name: Confirmer le déploiement
+        run: echo "Le déploiement en production est terminé pour le tag $GITHUB_REF"
