@@ -1,10 +1,72 @@
 # 🎡 Jeu de la Roue de la Chance - NOVOTEL Reims Tinqueux
 
-Ce projet est un site web interactif conçu pour le **NOVOTEL Reims Tinqueux**, permettant aux utilisateurs de donner leur avis, d'envoyer un email avec leurs commentaires, puis de tenter leur chance pour gagner des récompenses grâce à une roue de la fortune.
+Ce projet est un site web interactif conçu pour le **NOVOTEL Reims Tinqueux**, permettant aux utilisateurs de donner leur avis et de tenter leur chance avec une roue de la fortune pour gagner des récompenses.
 
-## 🚀 Fonctionnalités
-- **Formulaire d'avis** avec sélection d'emoji, saisie d'email, et champs d'avis (minimum 50 caractères requis).
-- **Envoi automatique d'email** avec les informations du formulaire (via `mailto`).
-- **Roue de la chance** pour permettre aux utilisateurs de gagner des récompenses.
-- **Téléchargement de coupon** personnalisé en fonction du résultat obtenu.
-- **Mentions légales** et respect de la confidentialité des données (conformité RGPD).
+## 🚀 Fonctionnalités principales
+
+- **Formulaire d'avis** :
+  - Collecte d'email, évaluation via emoji et avis textuel (minimum 50 caractères).
+  - Envoi des avis vers Google (redirection vers la page dédiée).
+- **Roue de la chance interactive** :
+  - Animation fluide pour afficher les récompenses.
+  - Téléchargement de coupons personnalisés en fonction du résultat.
+- **Déploiement automatisé** :
+  - Gestion via GitHub Actions, avec déploiement en production déclenché par des tags `*-production`.
+- **Aspects légaux** :
+  - Mentions légales, politique de confidentialité, et conformité RGPD.
+
+---
+
+## 🛠️ Technologies utilisées
+
+- **Frontend** : HTML, CSS, JavaScript (D3.js).
+- **Déploiement** : GitHub Actions avec configuration de déploiement automatique.
+- **Sécurité** :
+  - HTTPS activé via Let's Encrypt.
+  - Protection contre les attaques DDoS avec Fail2Ban ou Cloudflare.
+
+---
+
+## ✅ Checklist : État d'avancement du projet
+
+### Fonctionnalités développées :
+
+- [x] Formulaire d'avis avec emoji, email et avis textuel.
+- [x] Validation des champs (minimum 50 caractères pour l'avis).
+- [x] Jeu de la roue avec animation fluide et résultats dynamiques.
+- [x] Téléchargement de coupons basés sur les résultats de la roue.
+- [x] Design responsive adapté à tous les écrans.
+- [x] Mentions légales et respect de la confidentialité des données (conformité RGPD).
+
+### Fonctionnalités restantes à développer :
+
+- [ ] Redirection vers Google pour laisser un avis après soumission du formulaire.
+- [ ] Intégration des lots avec des images (SVG) dans la roue.
+- [ ] Optimisation des fichiers CSS et JS (minification et compression).
+- [ ] Bannière pour consentement aux cookies.
+- [ ] Configuration HTTPS sur le serveur de production.
+- [ ] Tests finaux et déploiement en production.
+
+---
+
+## ⚙️ Déploiement automatisé
+
+Le déploiement en production est géré via **GitHub Actions**. Tout tag se terminant par `-production` déclenchera le pipeline pour :
+
+1. Vérifier le code et exécuter les tests.
+2. Construire le projet.
+3. Déployer automatiquement sur le serveur de production.
+
+---
+
+## 📜 Mentions légales
+
+Les mentions légales sont accessibles [ici](https://novotel-reims-tinqueux.com/fr/mentions-legales.html).
+
+---
+
+## 📋 Plan de maintenance
+
+- **Surveillance des performances** avec Google Analytics et Google Search Console.
+- **Sauvegardes régulières** des fichiers et de la configuration du serveur.
+- **Mises à jour de sécurité** et tests sur les fonctionnalités critiques.
