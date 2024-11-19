@@ -31,16 +31,17 @@ Ce projet est un site web interactif conçu pour le **NOVOTEL Reims Tinqueux**, 
 
 ### Fonctionnalités développées :
 
-- [x] Formulaire d'avis avec emoji, email et avis textuel.
-- [x] Validation des champs (minimum 50 caractères pour l'avis).
-- [x] Jeu de la roue avec animation fluide et résultats dynamiques.
-- [x] Téléchargement de coupons basés sur les résultats de la roue.
-- [x] Design responsive adapté à tous les écrans.
-- [x] Mentions légales et respect de la confidentialité des données (conformité RGPD).
+- ✅ Formulaire d'avis avec emoji, email et avis textuel.
+- ✅ Validation des champs (minimum 50 caractères pour l'avis).
+- ✅ Jeu de la roue avec animation fluide et résultats dynamiques.
+- ✅ Téléchargement de coupons basés sur les résultats de la roue.
+- ✅ Design responsive adapté à tous les écrans.
+- ✅ Mentions légales et respect de la confidentialité des données (conformité RGPD).
 
 ### Fonctionnalités restantes à développer :
 
 - [ ] Redirection vers Google pour laisser un avis après soumission du formulaire.
+- [ ] CSS
 - [ ] Intégration des lots avec des images (SVG) dans la roue.
 - [ ] Optimisation des fichiers CSS et JS (minification et compression).
 - [ ] Bannière pour consentement aux cookies.
